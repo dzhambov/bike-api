@@ -25,8 +25,8 @@ $(document).ready(function() {
       let bikeArr = [];
       response.bikes.forEach(function(bike) {
         bikeArr.push(response);
-        $('#showManufacturer').append(`<li> ${city} ${bike.manufacturer_name} </li>`); 
-        $('#showColor').append(`<li> ${city} ${bike.frame_colors} </li>`);
+        $('#showManufacturer').prepend(`<li> ${city} ${bike.manufacturer_name} </li>`); 
+        $('#showColor').prepend(`<li> ${city} ${bike.frame_colors} </li>`);
         $('#result').show();
       });
 
