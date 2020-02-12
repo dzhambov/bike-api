@@ -25,15 +25,12 @@ $(document).ready(function() {
       let bikeArr = [];
       response.bikes.forEach(function(bike) {
         bikeArr.push(response);
-        $('#showManufacturer').append(`The brand of bikes stolen in ${city} are the following:${bike.manufacturer_name}`); 
-        $('#showColor').append(`The color of bikes stolen in ${city} are the following:${bike.frame_colors}`);
+        $('#showManufacturer').append(`<li> ${city} ${bike.manufacturer_name} </li>`); 
+        $('#showColor').append(`<li> ${city} ${bike.frame_colors} </li>`);
+        $('#result').show();
       });
 
       console.log(response);
-
-
-      // $('#showManufacturer').text(`The brand of bikes stolen in ${city} are the following:${response.bikes.manufacturer_name}`); 
-
     }
   });
 });
