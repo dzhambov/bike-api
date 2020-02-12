@@ -19,10 +19,21 @@ $(document).ready(function() {
       getElements(response);
     })();
 
+    
+
     function getElements(response) {
+      let bikeArr = [];
+      response.bikes.forEach(function(bike) {
+        bikeArr.push(response);
+        $('#showManufacturer').append(`The brand of bikes stolen in ${city} are the following:${bike.manufacturer_name}`); 
+        $('#showColor').append(`The color of bikes stolen in ${city} are the following:${bike.frame_colors}`);
+      });
+
       console.log(response);
-      $('#showManufacturer').text(`The brand of bikes stolen in ${city} are the following:${response.bikes[0].manufacturer_name}`);
-      $('#showColor').text(`The color of bikes stolen in ${city} are the following:${response.bike.frame_colors}`);
+
+
+      // $('#showManufacturer').text(`The brand of bikes stolen in ${city} are the following:${response.bikes.manufacturer_name}`); 
+
     }
   });
 });
