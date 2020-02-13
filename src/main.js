@@ -11,13 +11,30 @@ $(document).ready(function() {
     const city = $('#location').val();
     $('#location').val("");
     
-    
+    asyncApiCall();
 
-    (async () => {
-      let bikeService = new BikeService();
-      const response = await bikeService.getBikeByCity(city)
-      getElements(response);
-    })();
+    async function asyncApiCall() {
+      try {
+        let response = await fetch(`https://bikeindex.org:443/api/v3/search?page=1&per_page=20&location=${city}&distance=10&stolenness=proximity`);
+        let jsonifiedResponse;
+        if (response.ok && response.status == 200) {
+          jsonifiedResponse = await response.json();
+        } else {
+          jsonifiedResponse = false;
+        }
+        getElements(jsonifiedResponse);
+      } catch {
+        getElements(false);
+      }
+    }
+
+
+
+    // (async () => {
+    //   let bikeService = new BikeService();
+    //   const response = await bikeService.getBikeByCity(city)
+    //   getElements(response);
+    // })();
 
     
     function getElements(response) {
