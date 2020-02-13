@@ -20,17 +20,35 @@ $(document).ready(function() {
     })();
 
     
-
     function getElements(response) {
       let bikeArr = [];
       response.bikes.forEach(function(bike) {
         bikeArr.push(response);
-        $('#showManufacturer').prepend(`<li> ${city} ${bike.manufacturer_name}, Color:  ${bike.frame_colors}, Picture: ${bike.large_img} </li>`); 
-        // $('#showColor').prepend(`<li> ${city} ${bike.frame_colors} </li>`);
-        // $('#showPicture').prepend(`<li> ${city} ${bike.large_img} </li>`);
-        // $('#result').show();
+        
+        $('#showManufacturer').prepend(`<li> ${city} ${bike.manufacturer_name}, Color:  ${bike.frame_colors}, Picture: <img src="${bike.thumb}" </li>`); 
+
       });
 
+    let manufacturerArr = [];
+    response.bikes.forEach(function(bike) {
+      manufacturerArr.push(bike.manufacturer_name);
+    });
+    let maxFreq = 1;
+    let counter = 0;
+    let manufacturer; 
+    for (let i = 0; i<manufacturerArr.length; i++){
+      for (let j=i; j<manufacturerArr.length; j++){
+        if (manufacturerArr[i] === manufacturerArr[j]){
+          counter++
+        } 
+        if(maxFreq < counter){
+          maxFreq = counter;
+          manufacturer = manufacturerArr[i]
+        }
+      }
+      counter=0
+    }
+    $("#common").append(manufacturer)
       console.log(response);
     }
   });
